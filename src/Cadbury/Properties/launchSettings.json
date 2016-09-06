@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Cadbury": {
+      "commandName": "Project",
+      "commandLineArgs": "c:\\Projects\\Cadbury\\images.csv"
+    }
+  }
+}

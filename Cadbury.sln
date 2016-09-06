@@ -8,9 +8,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{84D1F37A-7BB7-46C1-94C5-F1A377D7A263}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		images.csv = images.csv
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cadbury", "src\Cadbury\Cadbury.xproj", "{46F32246-C2BA-4068-9680-32CC7E9C1CEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BD02C8E4-794E-41F0-9ECA-7427D40870E6}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cadbury.Tests", "test\Cadbury.Tests\Cadbury.Tests.xproj", "{4C6CC2DD-53BD-43B7-AAED-981E69D08096}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,11 +27,16 @@ Global
 		{46F32246-C2BA-4068-9680-32CC7E9C1CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46F32246-C2BA-4068-9680-32CC7E9C1CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46F32246-C2BA-4068-9680-32CC7E9C1CEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C6CC2DD-53BD-43B7-AAED-981E69D08096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C6CC2DD-53BD-43B7-AAED-981E69D08096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C6CC2DD-53BD-43B7-AAED-981E69D08096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C6CC2DD-53BD-43B7-AAED-981E69D08096}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{46F32246-C2BA-4068-9680-32CC7E9C1CEF} = {8241863B-D185-4580-B4B2-9A4707000D48}
+		{4C6CC2DD-53BD-43B7-AAED-981E69D08096} = {BD02C8E4-794E-41F0-9ECA-7427D40870E6}
 	EndGlobalSection
 EndGlobal

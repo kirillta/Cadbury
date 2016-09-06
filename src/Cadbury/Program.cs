@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Cadbury
+namespace Floxdc.Cadbury
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+            ILoggerFactory loggerFactory = new LoggerFactory();
+            
+            var core = new Core(loggerFactory);
+            core.Run(args).Wait();
         }
     }
 }

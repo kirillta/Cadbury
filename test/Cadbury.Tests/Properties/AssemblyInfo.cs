@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Cadbury")]
+[assembly: AssemblyProduct("Cadbury.Tests")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,6 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("46f32246-c2ba-4068-9680-32cc7e9c1cef")]
-
-[assembly:InternalsVisibleTo("Cadbury.Tests")]
+[assembly: Guid("4c6cc2dd-53bd-43b7-aaed-981e69d08096")]
