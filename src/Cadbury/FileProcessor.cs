@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -42,10 +43,28 @@ namespace Floxdc.Cadbury
         }
 
 
-        internal async Task WriteCsv(TargetUrl[] targetUrls)
+        internal async Task WriteCsv(TargetUrl[] targetUrls, string path)
         {
-            
-        } 
+            var root = Path.GetDirectoryName(path);
+            var exstrnsion = Path.GetExtension(path);
+            var name = Path.GetFileNameWithoutExtension(path) + DateTime.Now.ToString(CultureInfo.InvariantCulture);
+
+            name = Path.GetInvalidFileNameChars()
+                .Select(c => c.ToString())
+                .Aggregate(name, (target, invalidSymbol) => target.Replace(invalidSymbol, ""));
+
+            var newPath = Path.Combine(root, Path.ChangeExtension(name, exstrnsion));
+
+            var stream = new FileStream(newPath, FileMode.OpenOrCreate);
+
+            using (var writer = new StreamWriter(stream, Encoding.Unicode))
+            {
+                await writer.WriteLineAsync("Target,IsValid,Comment");
+
+                foreach (var url in targetUrls)
+                    await writer.WriteLineAsync($"{url.Target},{url.IsValid},{url.Comment}");
+            }
+        }
 
 
         private TargetUrl GetTargetUrl(string parsedLine)

@@ -41,7 +41,7 @@ namespace Floxdc.Cadbury
 
             Task.WaitAll(tasks.ToArray());
 
-            await fileProcessor.WriteCsv(TestedUrls.ToArray());
+            await fileProcessor.WriteCsv(TestedUrls.ToArray(), path);
 
             Console.WriteLine("Done.");
             Console.ReadLine();
