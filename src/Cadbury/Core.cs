@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -25,8 +26,12 @@ namespace Floxdc.Cadbury
             if (string.IsNullOrWhiteSpace(path))
                 throw new ArgumentException("No path specified!");
 
+            Console.WriteLine($"Reading {path}...");
+
             var fileProcessor = new FileProcessor(_loggerFactory);
             var urls = await fileProcessor.ReadCsv(path);
+
+            Console.WriteLine($"{urls.Length} URLs read.");
 
             foreach (var url in urls)
                 InitialUrls.Add(url);
@@ -41,8 +46,12 @@ namespace Floxdc.Cadbury
 
             Task.WaitAll(tasks.ToArray());
 
-            await fileProcessor.WriteCsv(TestedUrls.ToArray(), path);
+            var numberOfValid = TestedUrls.Select(u => u.IsValid == true).Count();
 
+            Console.WriteLine($"{numberOfValid}/{TestedUrls.Count} URLs is OK.");
+
+            await fileProcessor.WriteCsv(TestedUrls.ToArray(), path);
+            
             Console.WriteLine("Done.");
             Console.ReadLine();
         }
@@ -53,7 +62,7 @@ namespace Floxdc.Cadbury
             var client = new NetClient(_httpClient, _loggerFactory);
 
             TargetUrl url;
-            if (InitialUrls.TryTake(out url))
+            while (InitialUrls.TryTake(out url))
             {
                 var checkResult = await client.CheckUrl(url);
                 url.IsValid = checkResult.Key;

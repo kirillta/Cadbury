@@ -14,7 +14,6 @@ namespace Floxdc.Cadbury
         internal FileProcessor(ILoggerFactory loggerFactory)
         {
             _logger = loggerFactory.CreateLogger<FileProcessor>();
-
         }
 
 
@@ -56,7 +55,6 @@ namespace Floxdc.Cadbury
             var newPath = Path.Combine(root, Path.ChangeExtension(name, exstrnsion));
 
             var stream = new FileStream(newPath, FileMode.OpenOrCreate);
-
             using (var writer = new StreamWriter(stream, Encoding.Unicode))
             {
                 await writer.WriteLineAsync("Target,IsValid,Comment");
@@ -72,7 +70,7 @@ namespace Floxdc.Cadbury
             var segments = parsedLine.Split(',');
             segments[0] = segments[0].Trim();
 
-            if (segments.Length == 2)
+            if (segments.Length == 3)
             {
                 segments[1] = segments[1].Trim();
 
@@ -82,16 +80,18 @@ namespace Floxdc.Cadbury
                 if (isParsed)
                     return new TargetUrl
                     {
+                        Comment = null,
                         IsValid = isValid,
                         Target = segments[0]
                     };
             }
 
-            if (segments.Length > 2)
+            if (segments.Length > 3)
                 _logger.LogWarning($"{Environment.NewLine}This block contains more elements when expected: \"{segments[0]}\"{Environment.NewLine}");
 
             return new TargetUrl
             {
+                Comment = null,
                 IsValid = null,
                 Target = segments[0]
             };
